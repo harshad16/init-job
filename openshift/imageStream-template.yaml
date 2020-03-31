@@ -1,14 +1,22 @@
 ---
-- kind: ImageStream
-  apiVersion: image.openshift.io/v1
-  metadata:
-    annotations:
-      thoth-station.ninja/template-version: 0.1.0
-    labels:
-      app: thoth
-      component: init-job
-    name: init-job
-  spec:
-    name: latest
-    lookupPolicy:
-      local: true
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  annotations:
+    thoth-station.ninja/template-version: 0.1.0
+  labels:
+    app: thoth
+    component: init-job
+  name: init-job
+spec:
+  lookupPolicy:
+    local: true
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: init-job
+  labels:
+    app: thoth
+    component: init-job
